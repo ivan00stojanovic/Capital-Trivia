@@ -1,0 +1,67 @@
+:root {
+    /* COLORS */
+    --clr-highlight-500: hsl(25, 97%, 53%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-regular-200: hsl(0, 0%, 83%);
+    --clr-neutral-200: hsl(217, 12%, 63%);
+    --clr-neutral-400: hsl(216, 12%, 54%);
+    --clr-neutral-700: hsl(213, 19%, 18%);
+    --clr-neutral-900: hsl(216, 12%, 8%);
+    /* FONTS */
+    --ff-primary: "Overpass", sans-serif;
+    /* FONT WEIGHTS */
+    --ff-weight-400: 400;
+    --ff-weight-700: 700;
+  }
+ 
+  *{
+    outline: 2px solid red;
+}
+
+  body{
+    background-color: var(--clr-neutral-900);
+    color: var(--clr-regular-200);
+    font-family: var(--ff-primary);
+    font-size: 1.2rem;
+  }
+
+  .logo{
+    font-family: 'Slabo 27px', serif;
+    color: var(--clr-highlight-500);
+    text-shadow: -3px 5px 4px var(--clr-neutral-700);
+    display: flex;
+    justify-content: center;  
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+  }
+
+  
+
+  ol > li {
+    padding: 0.5rem;
+  }
+
+ body > button{
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    display: inline-block;
+    white-space: normal;
+    word-wrap: break-word;
+    margin: 1rem;
+    background-color: var(--clr-highlight-500);
+    color: hsl(30, 45%, 100%);
+    transition: 300ms ease-out;
+    border-radius: 5px;
+  }
+
+  button:hover{
+    cursor: pointer;
+    color: var(--clr-highlight-500);
+    box-shadow: inset 6.5rem 0 0 0 hsl(30, 45%, 100%);
+    transform: scale(1.1);
+  }
+
+  span{
+    color: var(--clr-neutral-200);
+  }
