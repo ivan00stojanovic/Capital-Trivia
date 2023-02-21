@@ -23,6 +23,9 @@
     color: var(--clr-regular-200);
     font-family: var(--ff-primary);
     font-size: 1.2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .logo{
@@ -30,17 +33,30 @@
     color: var(--clr-highlight-500);
     text-shadow: -3px 5px 4px var(--clr-neutral-700);
     display: flex;
-    justify-content: center;  
+    justify-content: center; 
     margin-bottom: 3rem;
     margin-top: 1rem;
   }
-
   
 
   ol > li {
     padding: 0.5rem;
   }
 
+  @keyframes textOpacity {
+    from{
+      opacity: 1;
+    }
+    to{
+      opacity: 0;
+    }
+    
+  }
+
+  .text{
+    background-color: var(--clr-neutral-900);
+    /*animation: textOpacity 1000ms ease-in-out;*/ 
+  }
  body > button{
     width: 6rem;
     height: 2.5rem;
@@ -53,6 +69,7 @@
     color: hsl(30, 45%, 100%);
     transition: 300ms ease-out;
     border-radius: 5px;
+    
   }
 
   button:hover{
@@ -60,8 +77,27 @@
     color: var(--clr-highlight-500);
     box-shadow: inset 6.5rem 0 0 0 hsl(30, 45%, 100%);
     transform: scale(1.1);
+
+    
   }
 
   span{
     color: var(--clr-neutral-200);
+  }
+
+  footer{
+    margin-top: auto;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: end;
+  }
+
+  footer > span {
+    display: inline;
+    margin: 2rem;
+  }
+
+  .timer{
+    margin-right: 52rem;
+    font-size: 2rem;
   }
