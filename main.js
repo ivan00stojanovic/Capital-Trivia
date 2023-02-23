@@ -4,12 +4,25 @@ const buttonLong = document.querySelector('.longGame')
 
 //const newspaperSpinning = opacity
 
+//const makeNewElement = (html) => {
+//     html = document.createElement('button')
+//    startbtn.innerText = 'radili'
+//    html.id = 'button-1'
+//    console.log(html)
+//    return  document.appendChild(html)
+//}
+
+
 const byee = (poz) => {
     poz.remove()
 }
 buttonShort.addEventListener('click', () => {
-    text.animate([{transform: 'translateX(0px)', easing: 'ease-in'},{transform: 'translateX(-300px)', easing: 'ease-in'}],1000)
-    setTimeout(byee(text), 10500)
+  text.animate([
+    {opacity: '1', easing: 'ease-in', transform: 'scale(1)'},
+    {opacity: '0', easing: 'ease-in', transform: 'scale(0.2)'},
+    {opacity: '1', easing: 'ease-in', transform: 'scale(1)'}]
+    ,2500)
+    //setTimeout(byee, 1500, text,)
 })
 
 
