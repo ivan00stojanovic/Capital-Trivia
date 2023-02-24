@@ -1,45 +1,40 @@
 let text = document.querySelector('.text')
-let secondDiv = document.querySelector('.game-layout')
+const h2 = document.querySelector('h2')
+const rulesTitle = document.querySelector('.rules-heading')
+let tip = document.querySelector('.tip')
+const disposableElements = Array.from(document.getElementsByClassName('future-removal'))
+let quizLayout = document.querySelector('.game-layout')
 const buttonShort = document.querySelector('.shortGame')
 const buttonLong = document.querySelector('.longGame')
 
-//const newspaperSpinning = opacity
-
-//const makeNewElement = (html) => {
-//     html = document.createElement('button')
-//    startbtn.innerText = 'radili'
-//    html.id = 'button-1'
-//    console.log(html)
-//    return  document.appendChild(html)
-//}
-
+//remove the intro/rulebook and display and start the quiz
 const quizStart = (desiredRemoval) => {
     desiredRemoval.classList.remove('visually-hidden');
     console.log('charm')
 }
-const elementRemove = (el) => {
-    el.remove()
+const elementRemoval = (element) => {
+    element.remove()
 }
+
+
+const fadeLeftAnimation = [
+    {transform: 'translateX(0px)', opacity: 1, easing: 'ease-in'},
+    {transform: 'translateX(+150px)', opacity: 0.3, easing: 'ease-in'},
+    {transform: 'translateX(-3000px)', opacity: 0, easing: 'ease-in-out'}
+]
+
 buttonShort.addEventListener('click', () => {
-  text.animate([
-    {opacity: '1', easing: 'ease-in', transform: 'scale(1)'},
-    {opacity: '0', easing: 'ease-in', transform: 'scale(0.2)'},
-    {opacity: '1', easing: 'ease-in', transform: 'scale(1)'}]
-    ,1500)
-    setTimeout(elementRemove, 200, text)
-    setTimeout(quizStart, 250, secondDiv)
-    alert('PROCITAJ STA SLEDECE DA RADIS')
+    disposableElements.forEach((el, i) => {
+        setTimeout(() => {
+          el.animate(fadeLeftAnimation, 1000)
+          //elementRemoval(el)
+        }, i * 50);
+      });
+    setTimeout(elementRemoval, 1000, text)
+    setTimeout(quizStart, 1005, quizLayout)
+    //alert('PROCITAJ STA SLEDECE DA RADIS')
 })  
 
-//buttonLong.addEventListener('click', () => {
-//    text2.animate([
-//      {opacity: '1', easing: 'ease-in', transform: 'scale(1)'},
-//      {opacity: '0', easing: 'ease-in', transform: 'scale(0.2)'},
-//      {opacity: '1', easing: 'ease-in', transform: 'scale(1)'}]
-//      ,1500)
-//      setTimeout(byee, 2000, text2)
-//      setTimeout(quizStart, 2500, text2)
-//  })
 
 
  /* Things to do:

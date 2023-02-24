@@ -45,21 +45,19 @@
     padding: 0.5rem;
   }
 
-  @keyframes textOpacity {
-    from{
-      opacity: 1;
+  @keyframes wiggle {
+    0% {
+      transform: translateY(0px);
     }
-    to{
-      opacity: 0;
+    5% {
+      transform: translateY(-16px);
+    }
+    20%, 100%{
+        transform: translateY(0px);
     }
   }
 
-.text{
-  outline: 2px solid blue;
-}
-
 .game-layout{
-  outline: 2px solid green;
   margin-bottom: 4rem;
   height: 50%;
   display: grid;
@@ -72,8 +70,11 @@
 
   .rules{
     background-color: var(--clr-neutral-900); 
-    margin: 1rem;
-    outline: 2px solid red;
+    margin: 2.5rem;
+  }
+
+  .rules-heading{
+    color: var(--clr-highlight-500);
   }
 
   
@@ -93,6 +94,14 @@
      margin-top: 1.5rem;
   }
 
+   .pro{
+    display: inline-block;
+    color: var(--clr-highlight-500);
+    animation: wiggle 3500ms ease-out;
+    animation-delay: 2000ms;
+    animation-iteration-count: 10;
+  }
+
   .game-layout > ol{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
@@ -101,6 +110,10 @@
       align-items: center;
       justify-content: center;
       list-style: none;
+  }
+
+  .rules > ol > li::marker{
+    color: var(--clr-highlight-500);
   }
 
   .game-layout > ol > li > button{
@@ -113,6 +126,7 @@
     color: hsl(30, 45%, 100%);
     transition: 300ms ease-out;
     border-radius: 5px; 
+
   }
 
   .game-layout > ol > li > button:hover{
@@ -167,13 +181,6 @@
     animation: signOff 500ms ease-in;
   }
 
-    @keyframe signOff {
-      from{
-        transform: translateY(0px)
-      }to{
-        transform: translateY(-8px)
-      }
-    }
   a:hover{
     color: hsl(25, 97%, 33%);
     transform: translateY(-6px);
