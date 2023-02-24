@@ -58,11 +58,25 @@
   outline: 2px solid blue;
 }
 
+.game-layout{
+  outline: 2px solid green;
+  margin-bottom: 4rem;
+  height: 50%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  /*display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;*/
+}
+
   .rules{
     background-color: var(--clr-neutral-900); 
     margin: 1rem;
     outline: 2px solid red;
   }
+
+  
   .rules > .buttons > button{
     width: 7rem;
     height: 2.5rem;
@@ -75,6 +89,41 @@
     border-radius: 5px; 
   }
 
+   .tip{
+     margin-top: 1.5rem;
+  }
+
+  .game-layout > ol{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      place-content: center;
+      gap: 5rem;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+  }
+
+  .game-layout > ol > li > button{
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+    margin: 1rem;
+    display: inline-block;
+    background-color: var(--clr-highlight-500);
+    color: hsl(30, 45%, 100%);
+    transition: 300ms ease-out;
+    border-radius: 5px; 
+  }
+
+  .game-layout > ol > li > button:hover{
+    cursor: pointer;
+    color: var(--clr-highlight-500);
+    box-shadow: inset 7rem 0 0 0 hsl(30, 45%, 100%);
+    transform: scale(1.15)
+  }
+
+  
+
   .visually-hidden {
     position: absolute;
     width: 1px;
@@ -84,7 +133,8 @@
     list-style: none;
   }
 
-  .rules > .buttons > button:hover{
+  .rules > .buttons > button:hover,
+  .rules2 > .buttons > button:hover{
     cursor: pointer;
     color: var(--clr-highlight-500);
     box-shadow: inset 7rem 0 0 0 hsl(30, 45%, 100%);
@@ -114,11 +164,19 @@
     color: hsl(25, 97%, 53%);
     transition:  200ms ease-in;
     display: inline-block;
+    animation: signOff 500ms ease-in;
   }
 
+    @keyframe signOff {
+      from{
+        transform: translateY(0px)
+      }to{
+        transform: translateY(-8px)
+      }
+    }
   a:hover{
     color: hsl(25, 97%, 33%);
-    transform: translateY(-8px);
+    transform: translateY(-6px);
    
   }
   
