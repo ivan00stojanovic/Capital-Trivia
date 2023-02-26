@@ -25,15 +25,18 @@ const fadeLeftAnimation = [
 
 buttonShort.addEventListener('click', () => {
     disposableElements.forEach((el, i) => {
-        setTimeout(() => {
-          el.animate(fadeLeftAnimation, 1000)
-          //elementRemoval(el)
-        }, i * 50);
-      });
+    setTimeout(() => {
+        el.animate(fadeLeftAnimation, 1000)
+        //elementRemoval(el)
+        }, i * 30);
+    });
     setTimeout(elementRemoval, 1000, text)
     setTimeout(quizStart, 1005, quizLayout)
-    //alert('PROCITAJ STA SLEDECE DA RADIS')
 })  
+
+
+
+
 
 
 
