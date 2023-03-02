@@ -116,7 +116,7 @@ async function apiRequest(){
         const response = await fetch(`https://countriesnow.space/api/v0.1/countries/capital`)
         const data = await response.json()
         let list = data.data
-        // console.log(list)
+         console.log(list)
 
         //get object from fetch and use reduce to reorder data by country name first as an array of objects
         let listOfCountryNames = list.reduce((acc, cur) => {
@@ -130,12 +130,16 @@ async function apiRequest(){
             return acc;
         }, [])
 
+        console.log(countries)
+        
         //reorder data from original fetch as array of objects but listed by capital names
         let capitals = list.reduce((acc, cur) => {
             acc[cur.capital] = cur;
             return acc;
         }, [])
+
         
+        console.log(capitals, countries.length)
         //remove all extra data from both countries and capitals arrays and leave only the names
         countries = Object.keys(countries).sort()//choose 1 random
         capitals = Object.keys(capitals).sort()//from this array choose 3 random
@@ -145,6 +149,7 @@ async function apiRequest(){
 
          //gettin the correct answer first
          var answer = listOfCountryNames[randomCountry].capital
+         console.log(answer)
 
          let randomThreeArr = []
          while(randomThreeArr.length < 3 && !(randomThreeArr.includes(answer))){
