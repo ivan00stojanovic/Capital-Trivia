@@ -17,7 +17,6 @@ const elementRemoval = (element) => {
     element.remove()
 }
 
-
 const fadeLeftAnimation = [
     {transform: 'translateX(0px)', opacity: 1, easing: 'ease-in'},
     {transform: 'translateX(+150px)', opacity: 0.3, easing: 'ease-in'},
@@ -52,8 +51,9 @@ const optionFour = document.getElementById('4')
 let timer = document.querySelector('.timer')
 //let slider = document.getElementById('slider')
 let timerCounter = 20;
-let correctOnes = 0;
+let scoreTracker = 0;
 let counter = 0;
+//let addToScore = 100;
 //let numQ = 10;
 const optionsArray = [optionOne, optionTwo, optionThree, optionFour]
 
@@ -64,6 +64,10 @@ const hideBtn = () => {
 nextQuestion.classList.add("hide");
 nextQuestion.style.setProperty('animation', 'reappear 350ms ease')
 }
+
+//const questionScore = () => {
+//    
+//}
 
 //const checkCounter = () => {
 //    if(counter > 8){
@@ -92,7 +96,6 @@ let countdown =  () => {
 
 
 async function apiRequest(){
-    console.log(correctOnes)
     startTheGame()
     timer.innerText = timerCounter;
     console.log('saftaj')
@@ -177,18 +180,20 @@ async function apiRequest(){
         options.forEach((option) => {
             option.addEventListener('click', (e) => {
                 nextQuestion.classList.remove('hide')  
-                    if(e.target.innerText === answer){
+                    if(e.target.innerText == answer){
+                        //correctOnes = correctOnes + 1
                         //correctOnes++
                         e.target.style.background = 'green'
-                        score.innerText = `Score : ${correctOnes} / ${counter}`
+                        scoreTracker += timerCounter*5; 
+                        console.log(timerCounter, scoreTracker)
+                        score.innerText = `Score : ${scoreTracker}` 
                         score.style.setProperty('animation', 'correct 500ms ease')              
-                        correctOnes = correctOnes + 1
                         //disables the use of other options when the user answers
                         optionsArray.forEach(option => option.disabled = true)
-                       backTo20()
+                        backTo20()
                     }else{
                         e.target.style.background = 'red'
-                        score.innerText = `Score : ${correctOnes} / ${counter}`
+                        score.innerText = `Score : ${scoreTracker}` 
                         //NOTE!! wrong answer animation didn't run on consecutive wrong answers before i removed the animation property on line 116
                         score.style.setProperty('animation', 'wrong 600ms ease')
                         //disables the use of other options when the user answers
@@ -197,6 +202,7 @@ async function apiRequest(){
                     }
             })
         }) 
+        
         
         
 
