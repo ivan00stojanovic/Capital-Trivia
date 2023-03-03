@@ -180,11 +180,11 @@ async function apiRequest(){
         options.forEach((option) => {
             option.addEventListener('click', (e) => {
                 nextQuestion.classList.remove('hide')  
-                    if(e.target.innerText == answer){
+                    if(e.target.innerText === answer){
                         //correctOnes = correctOnes + 1
                         //correctOnes++
                         e.target.style.background = 'green'
-                        scoreTracker += timerCounter*5; 
+                        scoreTracker += timerCounter*2.5; 
                         console.log(timerCounter, scoreTracker)
                         score.innerText = `Score : ${scoreTracker}` 
                         score.style.setProperty('animation', 'correct 500ms ease')              
@@ -194,6 +194,7 @@ async function apiRequest(){
                     }else{
                         e.target.style.background = 'red'
                         score.innerText = `Score : ${scoreTracker}` 
+                        console.log(timerCounter, scoreTracker)
                         //NOTE!! wrong answer animation didn't run on consecutive wrong answers before i removed the animation property on line 116
                         score.style.setProperty('animation', 'wrong 600ms ease')
                         //disables the use of other options when the user answers
