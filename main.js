@@ -43,7 +43,7 @@ const nextQuestion = document.querySelector('.next-question')
 let capitalQuestion = document.querySelector('.capital-question')
 const options = document.querySelectorAll('.options')
 let score = document.querySelector('.score');
-let showScore = document.querySelector('.class')
+//let showScore = document.querySelector('.class')
 const optionOne = document.getElementById('1')
 const optionTwo = document.getElementById('2')
 const optionThree = document.getElementById('3')
@@ -96,9 +96,9 @@ let countdown =  () => {
 
 
 async function apiRequest(){
+    nextQuestion.disabled = true;
     startTheGame()
     timer.innerText = timerCounter;
-    console.log('saftaj')
     //nextQuestion.innerText = 'Next Question'
     
     //if(counter === 9){
@@ -119,7 +119,7 @@ async function apiRequest(){
         const response = await fetch(`https://countriesnow.space/api/v0.1/countries/capital`)
         const data = await response.json()
         let list = data.data
-         console.log(list)
+         //console.log(list)
 
         //get object from fetch and use reduce to reorder data by country name first as an array of objects
         let listOfCountryNames = list.reduce((acc, cur) => {
@@ -133,7 +133,7 @@ async function apiRequest(){
             return acc;
         }, [])
 
-        console.log(countries)
+        //console.log(countries)
         
         //reorder data from original fetch as array of objects but listed by capital names
         let capitals = list.reduce((acc, cur) => {
@@ -142,17 +142,24 @@ async function apiRequest(){
         }, [])
 
         
-        console.log(capitals, countries.length)
+        //console.log(capitals, countries.length)
         //remove all extra data from both countries and capitals arrays and leave only the names
-        countries = Object.keys(countries).sort()//choose 1 random
-        capitals = Object.keys(capitals).sort()//from this array choose 3 random
+        countries = Object.keys(countries).sort((a,b) => a.length - b.length)//choose 1 random
+        capitals = Object.keys(capitals).sort((a,b) => a.length - b.length)//from this array choose 3 random
+        capitals.shift()
+        console.log(countries.indexOf('Bouvet Island'))
+        countries.splice(countries.indexOf(112), 1)
+        countries.splice(countries.indexOf(204), 1)
+        countries.splice(countries.indexOf(247), 1)
 
          //get one random country name from countries array
          let randomCountry = countries[Math.floor(Math.random() * 251)]
+         console.table(countries.length)
+         //console.table(capitals)
+         
 
          //gettin the correct answer first
          var answer = listOfCountryNames[randomCountry].capital
-         console.log(answer)
 
          let randomThreeArr = []
          while(randomThreeArr.length < 3 && !(randomThreeArr.includes(answer))){
@@ -165,6 +172,8 @@ async function apiRequest(){
          //pass the one random country into printCountryData function
          printCountryData(randomCountry)
          shuffleAnswers(answerOptions)
+         console.log(randomThreeArr)
+         console.log(answerOptions)
         
     
         //increments the score if the correct answer is clicked, NOTE: need to work on letting the user know that the answer is correct
@@ -180,18 +189,7 @@ async function apiRequest(){
         options.forEach((option) => {
             option.addEventListener('click', (e) => {
                 nextQuestion.classList.remove('hide')  
-                    if(e.target.innerText === answer){
-                        //correctOnes = correctOnes + 1
-                        //correctOnes++
-                        e.target.style.background = 'green'
-                        scoreTracker += timerCounter*2.5; 
-                        console.log(timerCounter, scoreTracker)
-                        score.innerText = `Score : ${scoreTracker}` 
-                        score.style.setProperty('animation', 'correct 500ms ease')              
-                        //disables the use of other options when the user answers
-                        optionsArray.forEach(option => option.disabled = true)
-                        backTo20()
-                    }else{
+                    if(e.target.innerText !== answer){
                         e.target.style.background = 'red'
                         score.innerText = `Score : ${scoreTracker}` 
                         console.log(timerCounter, scoreTracker)
@@ -199,20 +197,27 @@ async function apiRequest(){
                         score.style.setProperty('animation', 'wrong 600ms ease')
                         //disables the use of other options when the user answers
                         optionsArray.forEach(option => option.disabled = true)
+                        nextQuestion.disabled = false;
+                        backTo20()
+                    }else{
+                        console.log(score)
+                        console.log(scoreTracker)
+                        e.target.style.background = 'green'
+                        scoreTracker += timerCounter*2.5; 
+                        console.log(timerCounter, scoreTracker)
+                        score.innerText = `Score : ${scoreTracker}` 
+                        score.style.setProperty('animation', 'correct 500ms ease')              
+                        //disables the use of other options when the user answers
+                        optionsArray.forEach(option => option.disabled = true)
+                        nextQuestion.disabled = false;
                         backTo20()
                     }
             })
         }) 
-        
-        
-        
-
-         
+            
     
         // gives the buttons their functionality back after the apiRequest function is ran again
         optionsArray.forEach(option => option.disabled = false)
-    
-        
          //nextQuestion.innerText = 'Next Question'
 
           //returns every options' original bg after the user goes to the next question
