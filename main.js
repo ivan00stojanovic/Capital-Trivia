@@ -69,18 +69,18 @@ nextQuestion.style.setProperty('animation', 'reappear 350ms ease')
 //    
 //}
 
-//const checkCounter = () => {
-//    if(counter > 8){
-//        nextQuestion.innerText = 'Reset game'
-//        optionsArray.forEach(option => option.disabled = true)
-//    nextQuestion.addEventListener('click', () => {
-//        counter = 0
-//        correctOnes  = 0
-//        score.innerText = correctOnes + ' / ' + counter
-//        //apiRequest()
-//    })
-//}
-//}
+const checkCounter = () => {
+    if(counter > 8){
+        nextQuestion.innerText = 'Reset game'
+        optionsArray.forEach(option => option.disabled = true)
+    nextQuestion.addEventListener('click', () => {
+        counter = 0
+        scoreTracker  = 0
+        score.innerText = `Score : ${scoreTracker}`
+        //apiRequest()
+    })
+}
+}
 
 let countdown =  () => {
     timerCounter--;
@@ -90,6 +90,7 @@ let countdown =  () => {
      timer.innerText = 'Yikes, out of time'
      //nextQuestion.classList.remove('hide')
      optionsArray.forEach(option => option.disabled = true)
+     nextQuestion.disabled = false;
      
     }    
 };
@@ -98,20 +99,20 @@ let countdown =  () => {
 async function apiRequest(){
     nextQuestion.disabled = true;
     startTheGame()
+    timerCounter = 20
     timer.innerText = timerCounter;
-    //nextQuestion.innerText = 'Next Question'
+    //timer.innerText = 'Next Question'
     
     //if(counter === 9){
     //    nextQuestion.innerHTML = 'reset game'
     //}
-    //checkCounter()
+    checkCounter()
     hideBtn()
+    //const backTo20 = () => {
+    //    timerCounter = 20;
+    //    clearInterval(squareOne)
+    //}
     const squareOne = setInterval(countdown, 1000)
-
-    const backTo20 = () => {
-        clearInterval(squareOne)
-        timerCounter = 20;
-    }
     
     console.log(`counter after clicking next question ${counter}`)
     try{
@@ -147,13 +148,13 @@ async function apiRequest(){
         countries = Object.keys(countries).sort((a,b) => a.length - b.length)//choose 1 random
         capitals = Object.keys(capitals).sort((a,b) => a.length - b.length)//from this array choose 3 random
         capitals.shift()
-        console.log(countries.indexOf('Bouvet Island'))
+        console.log(countries.indexOf('Heard Island and McDonald Islands'))
         countries.splice(countries.indexOf(112), 1)
         countries.splice(countries.indexOf(204), 1)
         countries.splice(countries.indexOf(247), 1)
 
          //get one random country name from countries array
-         let randomCountry = countries[Math.floor(Math.random() * 251)]
+         let randomCountry = countries[Math.floor(Math.random() * 248)]
          console.table(countries.length)
          //console.table(capitals)
          
@@ -175,15 +176,12 @@ async function apiRequest(){
          console.log(randomThreeArr)
          console.log(answerOptions)
         
-    
         //increments the score if the correct answer is clicked, NOTE: need to work on letting the user know that the answer is correct
         //for each btn adding an event listener to grab text and compare
         //to the answer previously defined
         //NOTE: issue with duplicates in console log when game is
         //restarted
         //NOTE! ASK WHAT WAS WRONG, LET MEG KNOW THE "NEXT QUESTION SPAM" PROBLEM
-       
-        
 
         counter++
         options.forEach((option) => {
@@ -192,25 +190,25 @@ async function apiRequest(){
                     if(e.target.innerText !== answer){
                         e.target.style.background = 'red'
                         score.innerText = `Score : ${scoreTracker}` 
-                        console.log(timerCounter, scoreTracker)
+                        //console.log(timerCounter, scoreTracker)
                         //NOTE!! wrong answer animation didn't run on consecutive wrong answers before i removed the animation property on line 116
                         score.style.setProperty('animation', 'wrong 600ms ease')
                         //disables the use of other options when the user answers
                         optionsArray.forEach(option => option.disabled = true)
                         nextQuestion.disabled = false;
-                        backTo20()
+                        clearInterval(squareOne)
                     }else{
-                        console.log(score)
-                        console.log(scoreTracker)
+                        //console.log(score)
+                        //console.log(scoreTracker)
                         e.target.style.background = 'green'
-                        scoreTracker += timerCounter*2.5; 
-                        console.log(timerCounter, scoreTracker)
+                        scoreTracker += timerCounter * 2.5; 
+                        //console.log(timerCounter, scoreTracker)
                         score.innerText = `Score : ${scoreTracker}` 
                         score.style.setProperty('animation', 'correct 500ms ease')              
                         //disables the use of other options when the user answers
                         optionsArray.forEach(option => option.disabled = true)
                         nextQuestion.disabled = false;
-                        backTo20()
+                        clearInterval(squareOne)
                     }
             })
         }) 
@@ -264,10 +262,6 @@ async function apiRequest(){
 }
 
 buttonShort.addEventListener('click', () => {
-    apiRequest()
-})
-
-buttonLong.addEventListener('click', () => {
     apiRequest()
 })
 
