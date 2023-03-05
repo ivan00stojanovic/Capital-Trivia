@@ -37,7 +37,6 @@ const startTheGame = () => {
 
 
 //quiz logic
-
 let quizLayout = document.querySelector('.game-layout')
 const nextQuestion = document.querySelector('.next-question')
 let capitalQuestion = document.querySelector('.capital-question')
@@ -56,6 +55,8 @@ let counter = 0;
 //let addToScore = 100;
 //let numQ = 10;
 const optionsArray = [optionOne, optionTwo, optionThree, optionFour]
+
+
 
 
 //https://countriesnow.space/api/v0.1/countries/cities this is country names API
@@ -212,6 +213,8 @@ async function apiRequest(){
                     }
             })
         }) 
+
+        
             
     
         // gives the buttons their functionality back after the apiRequest function is ran again
@@ -230,6 +233,12 @@ async function apiRequest(){
         console.log(error)
     }
 }
+
+document.addEventListener('keypress', e => {
+    if(e.key.toLowerCase() === 'enter' && nextQuestion.disabled === false){
+        apiRequest()
+    }
+})
 
 
 
