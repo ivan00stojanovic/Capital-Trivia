@@ -290,3 +290,42 @@
   a:active{
     color: hsl(25, 97%, 60%);
   }
+
+  .results{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    font-size: 2rem;
+    z-index: 5;
+     backdrop-filter: blur(10px);
+}
+
+.restart-after-win{
+    width: 10em;
+    height: 5rem;
+    font-size: 0.9rem;
+    margin: 5rem 1rem;
+    display: inline-block;
+    background-color: var(--clr-highlight-500);
+    color: hsl(30, 45%, 100%);
+    transition: 300ms ease-out;
+    border-radius: 5px; 
+
+}
+
+.restart-after-win:hover{
+  cursor: pointer;
+    color: var(--clr-highlight-500);
+    box-shadow: inset 0 5rem 0 0 hsl(30, 45%, 100%);
+    transform: scale(1.15);
+}
+
+.results.show-results{
+  visibility: hidden;
+}

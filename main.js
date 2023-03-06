@@ -48,6 +48,8 @@ const optionTwo = document.getElementById('2')
 const optionThree = document.getElementById('3')
 const optionFour = document.getElementById('4')
 let timer = document.querySelector('.timer')
+let resultDisplay = document.querySelector('.results')
+let restart = document.getElementById('restart-after-win')
 //let slider = document.getElementById('slider')
 let timerCounter = 20;
 let scoreTracker = 0;
@@ -71,16 +73,14 @@ nextQuestion.style.setProperty('animation', 'reappear 350ms ease')
 //}
 
 const checkCounter = () => {
-    if(counter > 8){
         nextQuestion.innerText = 'Reset game'
         optionsArray.forEach(option => option.disabled = true)
     nextQuestion.addEventListener('click', () => {
         counter = 0
         scoreTracker  = 0
         score.innerText = `Score : ${scoreTracker}`
-        //apiRequest()
+        resultDisplay.classList.remove('show-results')
     })
-}
 }
 
 let countdown =  () => {
@@ -107,7 +107,8 @@ async function apiRequest(){
     //if(counter === 9){
     //    nextQuestion.innerHTML = 'reset game'
     //}
-    checkCounter()
+    console.log(counter)
+    if(counter > 9) checkCounter()
     hideBtn()
     //const backTo20 = () => {
     //    timerCounter = 20;
@@ -236,6 +237,7 @@ async function apiRequest(){
 
 document.addEventListener('keypress', e => {
     if(e.key.toLowerCase() === 'enter' && nextQuestion.disabled === false){
+        //checkCounter()
         apiRequest()
     }
 })
@@ -276,6 +278,10 @@ buttonShort.addEventListener('click', () => {
 
 nextQuestion.addEventListener('click', () => {
     apiRequest()
+})
+
+restart.addEventListener('click', () => {
+    window.location.reload()
 })
 /* Things to do:
 1. Use keyframe formats to animate rules element removal and arrival of quiz section
