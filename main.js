@@ -50,6 +50,7 @@ const optionFour = document.getElementById('4')
 let timer = document.querySelector('.timer')
 let resultDisplay = document.querySelector('.results')
 let restart = document.getElementById('restart-after-win')
+const resultScore = document.getElementById('results-text')
 //let slider = document.getElementById('slider')
 let timerCounter = 20;
 let scoreTracker = 0;
@@ -73,15 +74,19 @@ nextQuestion.style.setProperty('animation', 'reappear 350ms ease')
 //}
 
 const checkCounter = () => {
-        nextQuestion.innerText = 'Reset game'
-        optionsArray.forEach(option => option.disabled = true)
-    nextQuestion.addEventListener('click', () => {
-        counter = 0
-        scoreTracker  = 0
-        score.innerText = `Score : ${scoreTracker}`
-        resultDisplay.classList.remove('show-results')
-    })
-}
+        //nextQuestion.innerText = 'Reset game'
+        //optionsArray.forEach(option => option.disabled = true)
+    //nextQuestion.addEventListener('click', () => {
+        //counter = 0
+        //scoreTracker  = 0
+        //score.innerText = `Score : ${scoreTracker}`
+        timerCounter = 20
+        timer.innerText = timerCounter;
+        resultScore.innerText = `Congratulations, your score was ${scoreTracker}! Would you like to try again?`
+
+        if(counter > 9) resultDisplay.classList.remove('show-results')
+    }
+
 
 let countdown =  () => {
     timerCounter--;
@@ -108,7 +113,7 @@ async function apiRequest(){
     //    nextQuestion.innerHTML = 'reset game'
     //}
     console.log(counter)
-    if(counter > 9) checkCounter()
+     checkCounter()
     hideBtn()
     //const backTo20 = () => {
     //    timerCounter = 20;

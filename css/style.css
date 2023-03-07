@@ -327,5 +327,5 @@
 }
 
 .results.show-results{
-  visibility: hidden;
+  display: none;
 }
