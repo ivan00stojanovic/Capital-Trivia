@@ -33,6 +33,8 @@ const startTheGame = () => {
     setTimeout(elementRemoval, 1000, text,)
     setTimeout(quizStart, 1005, quizLayout)
     setTimeout(quizStart, 1005, nextQuestion)
+    setTimeout(quizStart, 1005, timer)
+    setTimeout(quizStart, 1005, score)
 }
 
 
@@ -65,7 +67,7 @@ const optionsArray = [optionOne, optionTwo, optionThree, optionFour]
 //https://countriesnow.space/api/v0.1/countries/cities this is country names API
 
 const hideBtn = () => {
-nextQuestion.classList.add("hide");
+//nextQuestion.classList.add("hide");
 nextQuestion.style.setProperty('animation', 'reappear 350ms ease')
 }
 
@@ -94,7 +96,7 @@ let countdown =  () => {
     if(timerCounter <= 0 ){
      clearInterval(countdown);
      timer.innerText = 'Yikes, out of time'
-     //nextQuestion.classList.remove('hide')
+     nextQuestion.classList.remove('hide')
      optionsArray.forEach(option => option.disabled = true)
      nextQuestion.disabled = false;
      
@@ -293,7 +295,6 @@ restart.addEventListener('click', () => {
 2. Start copying/writing the api fetch logic and the quiz logic
 3. try to make the code with Meg a bit more readable and easier if you can
  4. break it down into smaller functions if possible
- 5. do DSA!!!!!!!!!!!!!!!!!!!!!
  */
 
 

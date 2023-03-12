@@ -127,7 +127,6 @@
     color: hsl(30, 45%, 100%);
     transition: 300ms ease-out;
     border-radius: 5px; 
-
   }
 
   .game-layout > ol > li > button:hover{
@@ -235,6 +234,7 @@
   .values > span  {
     margin: 4rem;
     display: flex;
+    position: relative;
     justify-content: space-evenly; 
     flex-direction: row;
     font-size: 2rem;
@@ -245,23 +245,45 @@
     display: none;
 }
 
-  .values > .next-question{
-    width: 6rem;
-    height: 3.5rem;
+  .game-layout > .next-question{
+    /* width: 6rem;
+    height: 3.5rem; */
     font-size: 0.9rem;
-    margin: 1rem;
+    position: absolute;
+    padding: 2rem;
+    bottom: 3rem;
+    right: 3rem;
+    /* display: inline-block; */
+    background-color: var(--clr-highlight-500);
+    color: hsl(30, 45%, 100%);
+    transition: 300ms ease-out;
+    border-radius: 5px; 
+    /* margin-left: 57rem; */
+  }
+
+  .game-layout> .next-question:hover{
+    cursor: pointer;
+    color: var(--clr-highlight-500);
+    box-shadow: inset 10rem 0 0 0 hsl(30, 45%, 100%);
+    transform: scale(1.15);
+  }
+  
+  .game-layout > ol > li > button{
+    width: 10em;
+    height: 5rem;
+    font-size: 0.9rem;
+    margin: 0rem 1rem;
     display: inline-block;
     background-color: var(--clr-highlight-500);
     color: hsl(30, 45%, 100%);
     transition: 300ms ease-out;
     border-radius: 5px; 
-    margin-left: 57rem;
   }
 
-  .values > .next-question:hover{
+  .game-layout > ol > li > button:hover {
     cursor: pointer;
     color: var(--clr-highlight-500);
-    box-shadow: inset 7rem 0 0 0 hsl(30, 45%, 100%);
+    box-shadow: inset 10rem 0 0 0 hsl(30, 45%, 100%);
     transform: scale(1.15);
   }
 
