@@ -242,9 +242,10 @@ async function apiRequest(){
     }
 }
 
-document.addEventListener('keypress', e => {
-    if(e.key.toLowerCase() === 'enter' && nextQuestion.disabled === false){
+document.addEventListener('keydown', e => {
+    if(e.key.toLowerCase() === ' ' && nextQuestion.disabled === false){
         //checkCounter()
+        console.log('space')
         apiRequest()
     }
 })
