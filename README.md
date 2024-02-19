@@ -1,4 +1,4 @@
-# [Capital Trivia]([https://pdm-prep.netlify.app/](https://capital-trivia.netlify.app/))
+# [Capital Trivia](https://capital-trivia.netlify.app/))
 
 A web app designed to simulate drivers exams in the state of Pennsylvania, helping people to better prepare for their license.
 
